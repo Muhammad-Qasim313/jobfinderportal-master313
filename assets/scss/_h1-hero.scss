@@ -160,46 +160,60 @@ form.search-box{
             }
         }
     }
-    .select-form{
+    .select-form {
         width: 34%;
-        @media #{$xs}{
+        position: relative; /* Enable positioning for the dropdown */
+        @media #{$xs} {
             width: 100%;
         }
+
         .nice-select {
             width: 100%;
             height: 70px;
             background: #fff;
             border-radius: 0px;
             padding: 11px 19px 11px 10px;
-             color: #616875;
+            color: #616875;
             line-height: 54px;
             border: 0;
-            @media #{$xs}{
+            @media #{$xs} {
                 margin-bottom: 20px;
                 padding-left: 25px;
             }
-            @media #{$sm}{
+            @media #{$sm} {
                 margin-bottom: 20px;
                 padding-left: 25px;
-            }
-           .list {
-                width: 100%;
-            }
-            &.open .list {
-                width: 100%;
-                border-radius: 0;
-                border: 0;
-            }
-            &::after {
-                border-bottom: 1px solid #a9b6cd;
-                border-right: 1px solid #a9b6cd;
-                height: 12px;
-                width: 12px;
-                margin-top: -4px;
-                right: 29px;
             }
         }
 
+        .list {
+            width: 100%;
+            overflow: hidden; /* Hide overflowing content initially */
+            position: absolute; /* New: position the list absolutely */
+            top: 100%; /* New: position the list above the select */
+            left: 0;
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* New: add slight shadow */
+            display: none; /* Initially hide the options list */
+        }
+
+        .nice-select.open .list {
+            display: block; /* Show the options list on hover */
+        }
+
+        .list option {
+            padding: 10px; /* Style the options */
+            cursor: pointer;
+        }
+
+        .nice-select::after {
+            border-bottom: 1px solid #a9b6cd;
+            border-right: 1px solid #a9b6cd;
+            height: 12px;
+            width: 12px;
+            margin-top: -4px;
+            right: 29px;
+        }
     }
     .search-form{
         width: 21%;
